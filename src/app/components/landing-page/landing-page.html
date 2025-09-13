@@ -1,0 +1,35 @@
+<div class="relative w-full h-screen overflow-hidden">
+
+  @for (slide of slides; track $index) {
+    <div
+      class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out"
+      [class.opacity-100]="$index === currentIndex"
+      [class.opacity-0]="$index !== currentIndex"
+      style="background-image: url('{{slide.image}}'); background-repeat: no-repeat; background-position: center; background-size: cover; z-index: 0;">
+    </div>
+  }
+  <div class="absolute inset-0 bg-black/80 z-10"></div>
+  <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-20 z-20"[class.opacity-100]="true"
+       style="transition: opacity 0.7s ease-in-out;">
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-8">
+      <div class="flex flex-col gap-6 md:gap-8">
+        <h1 class="text-yellow-600 text-5xl md:text-7xl font-semibold windsong">
+          {{slides[currentIndex].title}}
+        </h1>
+        <h2 class="text-white text-2xl md:text-3xl libre-bodoni">
+          {{slides[currentIndex].text}}
+        </h2>
+      </div>
+      <button class="bg-yellow-500 px-5 py-3 self-start md:self-auto cursor-pointer rounded-lg md:hover:px-6 md:hover:py-4 md:hover:bg-yellow-600 transition-all duration-300">
+        Get Started
+      </button>
+    </div>
+  </div>
+
+  <div class="absolute bottom-5 left-0 right-0 flex justify-center items-center gap-2 z-20">
+    @for (item of slides; track $index) {
+      <div class="w-2 h-2 rounded-full transition-all duration-300" [ngClass]="{'w-6 bg-white transition-all duration-500': currentIndex === $index, 'bg-white/40': currentIndex !== $index}"></div>
+    }
+  </div>
+
+</div>
