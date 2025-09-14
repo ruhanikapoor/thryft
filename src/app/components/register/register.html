@@ -1,1 +1,69 @@
-<p>register works!</p>
+<div
+  class="min-h-screen w-full flex items-center justify-center relative p-3"
+  style="
+    background-image: url('/assets/bg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  "
+>
+  <div
+    class="m-auto backdrop-blur-sm bg-white/30 px-6 sm:px-12 py-9 rounded-3xl flex flex-col items-center shadow-xl max-w-lg w-[90%]"
+  >
+    <div class="flex flex-col items-center text-center">
+      <h1
+        class="windsong text-5xl sm:text-6xl text-[var(--color-coral)] font-medium drop-shadow-sm"
+      >
+        Hello, there.
+      </h1>
+      <h2 class="text-lg libre-bodoni text-gray-600 tracking-wide">
+        Register to begin your journey
+      </h2>
+    </div>
+    <form action="" class="flex flex-col gap-4 sm:gap-6 w-full mt-8">
+      <div class="flex flex-col gap-2">
+        <label for="name" class="text-sm text-gray-600">Name</label>
+        <input
+          required
+          type="text"
+          id="name"
+          class="bg-white/70 rounded-full border w-full px-4 py-3 border-[#c79461]/50 focus:outline-none transition-all shadow-sm placeholder:text-gray-300"
+          placeholder="Your Name"
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="email" class="text-sm text-gray-600">Email</label>
+        <input
+          required
+          type="email"
+          id="email"
+          class="bg-white/70 rounded-full border w-full px-4 py-3 border-[#c79461]/50 focus:outline-none transition-all shadow-sm placeholder:text-gray-300"
+          placeholder="you@email.com"
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="password" class="text-sm text-gray-600">Password</label>
+        <input
+          required
+          type="password"
+          id="password"
+          class="bg-white/70 rounded-full border w-full px-4 py-3 border-[#c79461]/50 focus:outline-none transition-all shadow-sm placeholder:text-gray-300"
+          placeholder="••••••••"
+        />
+      </div>
+      <button
+        class="px-4 py-3 bg-gradient-to-r from-[#ffd166] to-[#ffca8a] hover:from-[#ffcd73] hover:to-[#ffb74d] rounded-full font-semibold shadow-md transition-all hover:shadow-lg active:scale-95 cursor-pointer" (click)="signUp()"
+      >
+        Sign up
+      </button>
+      <p class="text-xs text-gray-500 text-center">
+        Already have an account?
+        <button class="font-semibold text-[var(--color-coral)] hover:underline cursor-pointer" (click)="loginPage()"
+          >Login</button
+        >
+      </p>
+    </form>
+
+    <img src="/assets/flower-icon.png" alt="Flower Icon" class="w-28 sm:w-36 mt-4" />
+  </div>
+</div>

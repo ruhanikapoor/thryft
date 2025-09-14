@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./landing-page.css']
 })
 export class LandingPage implements OnInit, OnDestroy {
+
+  router = inject(Router);
 
   slides = [
     {
@@ -63,4 +66,9 @@ export class LandingPage implements OnInit, OnDestroy {
     this.currentIndex = (this.currentIndex + 1) % this.slides.length;
     this.cdr.detectChanges();
   }
+
+  getStarted() {
+    this.router.navigateByUrl("login");
+  }
+
 }
