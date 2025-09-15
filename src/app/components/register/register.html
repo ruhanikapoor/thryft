@@ -20,21 +20,19 @@
         Register to begin your journey
       </h2>
     </div>
-    <form action="" class="flex flex-col gap-4 sm:gap-6 w-full mt-8">
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="flex flex-col gap-4 sm:gap-6 w-full mt-8">
       <div class="flex flex-col gap-2">
-        <label for="name" class="text-sm text-gray-600">Name</label>
-        <input
-          required
+        <label for="username" class="text-sm text-gray-600">Name</label>
+        <input formControlName="username"
           type="text"
-          id="name"
+          id="username"
           class="bg-white/70 rounded-full border w-full px-4 py-3 border-[#c79461]/50 focus:outline-none transition-all shadow-sm placeholder:text-gray-300"
           placeholder="Your Name"
         />
       </div>
       <div class="flex flex-col gap-2">
         <label for="email" class="text-sm text-gray-600">Email</label>
-        <input
-          required
+        <input formControlName="email"
           type="email"
           id="email"
           class="bg-white/70 rounded-full border w-full px-4 py-3 border-[#c79461]/50 focus:outline-none transition-all shadow-sm placeholder:text-gray-300"
@@ -43,8 +41,7 @@
       </div>
       <div class="flex flex-col gap-2">
         <label for="password" class="text-sm text-gray-600">Password</label>
-        <input
-          required
+        <input formControlName="password"
           type="password"
           id="password"
           class="bg-white/70 rounded-full border w-full px-4 py-3 border-[#c79461]/50 focus:outline-none transition-all shadow-sm placeholder:text-gray-300"
@@ -58,7 +55,7 @@
       </button>
       <p class="text-xs text-gray-500 text-center">
         Already have an account?
-        <button class="font-semibold text-[var(--color-coral)] hover:underline cursor-pointer" (click)="loginPage()"
+        <button type="submit" class="font-semibold text-[var(--color-coral)] hover:underline cursor-pointer"
           >Login</button
         >
       </p>
