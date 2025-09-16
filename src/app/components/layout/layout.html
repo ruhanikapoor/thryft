@@ -1,4 +1,12 @@
-<div class="h-screen w-full flex flex-col">
-  <app-navbar></app-navbar>
-  <router-outlet></router-outlet>
+<div class="min-h-screen w-full flex flex-col">
+    <app-navbar class="fixed top-0 left-0 w-full z-50"></app-navbar>
+  
+  <main class="flex-1"> 
+    <router-outlet></router-outlet>
+  </main>
+
+  
+  <footer class="h-14 bg-[var(--dark-sand)] flex items-center justify-center text-white">
+    <p class="text-sm">© 2025 Thryft. All rights reserved.</p>
+  </footer>
 </div>

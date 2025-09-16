@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +9,13 @@ import { CommonModule } from '@angular/common';
 })
 export class Navbar {
 
+  isScrolled: boolean = false;
   menuVisible: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > window.innerHeight * 0.93;
+  }
 
   openMenu() {
     this.menuVisible = true;
