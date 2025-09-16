@@ -2,7 +2,7 @@ export interface ListingPreview {
   id: string,
   title: string,
   price: number,
-  imageUrl: string[],
+  imageUrls: string[],
 }
 
 export interface Listing extends ListingPreview {
