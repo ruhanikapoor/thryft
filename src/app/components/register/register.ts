@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserInterface } from '../../../interfaces/user.interface';
+import { SignUpCredentials } from '../../../interfaces/auth.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -14,11 +14,11 @@ export class Register {
   router = inject(Router);
 
   signUpForm = new FormGroup<{
-    username: FormControl<string | null>;
+    name: FormControl<string | null>;
     email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>({
-    username: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(3)]}),
+    name: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(3)]}),
     email: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.email]}),
     password: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(6)]})
   });
@@ -29,7 +29,7 @@ export class Register {
 
   signUp() {
     if(this.signUpForm.valid){
-      const user: UserInterface = this.signUpForm.value as UserInterface;
+      const user: SignUpCredentials = this.signUpForm.value as SignUpCredentials;
       this.router.navigateByUrl("home");
     } else {
       alert("Invalid form. Check credentials again");

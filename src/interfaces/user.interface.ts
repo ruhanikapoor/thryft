@@ -1,5 +1,11 @@
-export interface UserInterface {
-  username: string,
-  email: string,
-  password: string,
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl?: string;
+  myListings?: string[];
+  messages?: string[];
+  recentlyViewed?: string[];
+  createdAt: number;
+  updatedAt?: number;
 }

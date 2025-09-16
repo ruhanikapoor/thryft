@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserInterface } from '../../../interfaces/user.interface';
+import { AuthCredentials } from '../../../interfaces/auth.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -27,7 +27,7 @@ export class Login {
 
   login() {
     if(this.loginForm.valid){
-      const user: UserInterface = this.loginForm.value as UserInterface;
+      const user: AuthCredentials = this.loginForm.value as AuthCredentials;
       this.router.navigateByUrl("home");
     } else {
       alert("Invalid form. Check credentials again");
