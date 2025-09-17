@@ -1,12 +1,12 @@
 @if(isListingPreview(cardData)){
-<div class="bg-white/70 rounded-xl shadow-md hover:shadow-lg cursor-pointer transition-all p-4 w-64">
+<div class="bg-white/70 rounded-xl shadow-md hover:shadow-lg cursor-pointer transition-all p-2 h-44 w-40 md:p-4 md:w-64 md:h-72">
   <img
     [src]="cardData.imageUrls[0]"
     alt="{{ cardData.title }}"
-    class="rounded-lg w-full h-40 object-cover"
+    class="rounded-lg w-full h-20 md:h-40 object-cover"
   />
-  <h3 class="mt-3 text-lg font-semibold">{{ cardData.title }}</h3>
-  <p class="text-gray-600 text-sm">₹{{ cardData.price }}</p>
+  <h3 class="mt-3 text-sm md:text-lg font-semibold">{{ cardData.title }}</h3>
+  <p class="text-gray-600 text-xs md:text-sm">₹{{ cardData.price }}</p>
 </div>
 } @else {
 <div class="flex flex-col items-center justify-center cursor-pointer">
