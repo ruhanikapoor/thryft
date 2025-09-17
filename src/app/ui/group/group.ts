@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Card } from '../card/card';
+import { ListingPreview } from '../../../interfaces/listing.interface';
+import { Category } from '../../../interfaces/category.interface';
 
 @Component({
   selector: 'app-group',
@@ -8,5 +10,6 @@ import { Card } from '../card/card';
   styleUrl: './group.css'
 })
 export class Group {
-
+  @Input() title: string = "";
+  @Input() items: ListingPreview[] | Category[] = [];
 }
