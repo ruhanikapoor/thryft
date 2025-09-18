@@ -1,5 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ export class Navbar {
 
   isScrolled: boolean = false;
   menuVisible: boolean = false;
+  router = inject(Router);
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -23,6 +25,10 @@ export class Navbar {
 
   closeMenu() {
     this.menuVisible = false;
+  }
+
+  home() {
+    this.router.navigateByUrl("home");
   }
 
 }
