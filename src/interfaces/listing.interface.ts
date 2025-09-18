@@ -3,12 +3,12 @@ export interface ListingPreview {
   title: string,
   price: number,
   imageUrls: string[],
+  categoryId?: string,
 }
 
 export interface Listing extends ListingPreview {
   description: string;
   ownerId: string;
-  categoryId?: string;
   createdAt: number;
   updatedAt?: number;
 }

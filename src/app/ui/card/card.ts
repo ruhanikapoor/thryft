@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { ListingPreview } from '../../../interfaces/listing.interface';
 import { Category } from '../../../interfaces/category.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './card.html',
   styleUrl: './card.css'
 })

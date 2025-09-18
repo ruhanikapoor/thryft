@@ -5,6 +5,7 @@ import { Register } from './components/register/register';
 import { Homepage } from './components/homepage/homepage';
 import { Layout } from './components/layout/layout';
 import { ProductPage } from './components/product-page/product-page';
+import { CategoryPage } from './components/category-page/category-page';
 
 export const routes: Routes = [
   {
@@ -28,7 +29,11 @@ export const routes: Routes = [
         component: Homepage,
       },
       {
-        path: "product",
+        path: "category/:id",
+        component: CategoryPage
+      },
+      {
+        path: "product/:id",
         component: ProductPage
       }
     ],

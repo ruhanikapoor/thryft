@@ -9,10 +9,10 @@
   <p class="text-gray-600 text-xs md:text-sm">₹{{ cardData.price }}</p>
 </div>
 } @else {
-<div class="flex flex-col items-center justify-center cursor-pointer">
+<button class="flex flex-col items-center justify-center outline-none cursor-pointer" [routerLink]="['/category', cardData.id]">
   <div class="bg-[var(--dark-sand)] rounded-full shadow-md hover:shadow-lg transition-all p-4 w-20 flex justify-center items-center">
     <img [src]="cardData.icon" alt="{{ cardData.name }}" class="w-14" />
   </div>
   <h3 class="mt-3 text-xs font-semibold">{{ cardData.name }}</h3>
-</div>
+</button>
 }
