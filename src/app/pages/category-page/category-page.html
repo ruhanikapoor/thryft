@@ -1,9 +1,5 @@
+<app-hero-section [bgImg]="categoryData.image" [heading]="categoryData.heading" [subHeading]="categoryData.subheading"></app-hero-section>
 <div class="min-h-screen w-full px-3 py-10 flex flex-col bg-[var(--soft-bg)]">
-  @if(categoryName === "Not Found"){
-    <h3 class="text-3xl text-center text-gray-100">No listings found.</h3>
-  } @else {
-    <h1 class="text-4xl libre-bodoni text-center mb-6">{{categoryName}}</h1>
-    <app-group [title]="'Listings Available'" [items]="filteredListings"></app-group>
-  }
-  
+  <h1 class="text-4xl libre-bodoni text-center mb-6">{{ categoryData.name }}</h1>
+  <app-group [title]="'Listings Available'" [items]="filteredListings"></app-group>
 </div>

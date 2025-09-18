@@ -5,10 +5,11 @@ import { ListingService } from '../../services/ListingService/listing';
 import { CategoryService } from '../../services/CategoryService/category';
 import { Category } from '../../../interfaces/category.interface';
 import { ListingPreview } from '../../../interfaces/listing.interface';
+import { HeroSection } from '../../ui/hero-section/hero-section';
 
 @Component({
   selector: 'app-homepage',
-  imports: [Group, Search],
+  imports: [Group, Search, HeroSection],
   templateUrl: './homepage.html',
   styleUrl: './homepage.css'
 })
