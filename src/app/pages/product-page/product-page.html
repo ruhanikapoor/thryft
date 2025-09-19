@@ -1,1 +1,10 @@
-<p>product-page works!</p>
+<div class="h-screen w-full flex items-center justify-center bg-[var(--soft-bg)]">
+  <div class="p-5 rounded-lg bg-white">
+    <img [src]="productDetails.imageUrls[0]" [alt]="productDetails.title" class="w-3xl">
+  </div>
+
+  <div class="h-3/4 w-full flex flex-col items-center justify-center">
+    <h1>{{productDetails.title}}</h1>
+    <h2>{{productDetails.price}}</h2>
+  </div>
+</div>
