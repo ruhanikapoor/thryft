@@ -1,14 +1,13 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { ListingPreview } from '../../../interfaces/listing.interface';
-import { MOCK_LISTINGS } from '../../data/mockData';
 
 @Component({
   selector: 'app-search',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './search.html',
   styleUrl: './search.css'
 })

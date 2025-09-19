@@ -19,6 +19,7 @@
         <li
           class="px-4 py-2 hover:bg-[#ffecd1] cursor-pointer"
           (click)="selectSuggestion(result.title)"
+          [routerLink]="['/product', result.id]"
         >
           {{ result.title }}
         </li>
