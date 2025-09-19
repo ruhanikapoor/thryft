@@ -52,9 +52,15 @@ export class CategoryPage implements OnInit {
       };
       case '3': return {
         name: 'Home',
-        image: "/assets/electronics.png",
+        image: "/assets/decor.png",
         heading: "One stop for home decor",
         subheading: "something home-y"
+      };
+      case '4': return {
+        name: 'Books',
+        image: "/assets/books.png",
+        heading: "One stop for books",
+        subheading: "something bookish"
       };
       default: return {
         name: "Not found",

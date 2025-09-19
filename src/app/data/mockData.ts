@@ -5,12 +5,13 @@ export const MOCK_CATEGORIES: Category[] = [
   { id: '1', name: 'Electronics', icon: '/assets/laptop.png' },
   { id: '2', name: 'Fashion', icon: '/assets/fashion.png' },
   { id: '3', name: 'Home', icon: '/assets/home-decor.png' },
-  { id: '4', name: 'Electronics', icon: '/assets/laptop.png' },
-  { id: '5', name: 'Fashion', icon: '/assets/fashion.png' },
-  { id: '6', name: 'Home', icon: '/assets/home-decor.png' },
-  { id: '7', name: 'Electronics', icon: '/assets/laptop.png' },
-  { id: '8', name: 'Fashion', icon: '/assets/fashion.png' },
-  { id: '9', name: 'Home', icon: '/assets/home-decor.png' },
+  { id: '4', name: 'Books', icon: '/assets/book1.png' },
+  { id: '5', name: 'Electronics', icon: '/assets/laptop.png' },
+  { id: '6', name: 'Fashion', icon: '/assets/fashion.png' },
+  { id: '7', name: 'Home', icon: '/assets/home-decor.png' },
+  { id: '8', name: 'Electronics', icon: '/assets/laptop.png' },
+  { id: '9', name: 'Fashion', icon: '/assets/fashion.png' },
+  { id: '10', name: 'Home', icon: '/assets/home-decor.png' },
 ];
 
 export const MOCK_LISTINGS: Listing[] = [
