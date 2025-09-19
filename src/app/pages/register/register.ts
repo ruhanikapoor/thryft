@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignUpCredentials } from '../../../interfaces/auth.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/AuthService/auth';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class Register {
 
   router = inject(Router);
+  authService = inject(AuthService);
 
   signUpForm = new FormGroup<{
     name: FormControl<string | null>;
@@ -30,7 +32,10 @@ export class Register {
   signUp() {
     if(this.signUpForm.valid){
       const user: SignUpCredentials = this.signUpForm.value as SignUpCredentials;
-      this.router.navigateByUrl("home");
+      this.authService.login(user.email, user.password);
+      const redirectUrl = sessionStorage.getItem('redirectUrl') || '/home';
+      sessionStorage.removeItem('redirectUrl');
+      this.router.navigateByUrl(redirectUrl);
     } else {
       alert("Invalid form. Check credentials again");
     }

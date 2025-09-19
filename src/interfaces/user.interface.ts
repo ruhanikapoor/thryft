@@ -6,6 +6,6 @@ export interface UserProfile {
   myListings?: string[];
   messages?: string[];
   recentlyViewed?: string[];
-  createdAt: number;
+  createdAt?: number;
   updatedAt?: number;
 }

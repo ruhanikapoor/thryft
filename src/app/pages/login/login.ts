@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthCredentials } from '../../../interfaces/auth.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/AuthService/auth';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './login.css'
 })
 export class Login {
-
-  router = inject(Router)
+  router = inject(Router);
+  authService = inject(AuthService);
 
   loginForm = new FormGroup<{
     email: FormControl<string | null>;
@@ -28,10 +29,12 @@ export class Login {
   login() {
     if(this.loginForm.valid){
       const user: AuthCredentials = this.loginForm.value as AuthCredentials;
-      this.router.navigateByUrl("home");
+      this.authService.login(user.email, user.password);
+      const redirectUrl = sessionStorage.getItem('redirectUrl') || '/home';
+      sessionStorage.removeItem('redirectUrl');
+      this.router.navigateByUrl(redirectUrl);
     } else {
       alert("Invalid form. Check credentials again");
     }
   }
-
 }

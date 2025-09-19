@@ -9,6 +9,7 @@ import {
   CategoryPage,
   Error,
 } from './pages/index';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,7 @@ export const routes: Routes = [
   {
     path: '',
     component: Layout,
+    canActivate: [authGuard],
     children: [
       {
         path: 'home',

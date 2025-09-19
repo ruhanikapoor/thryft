@@ -1,4 +1,5 @@
 export interface AuthCredentials {
+  id: string,
   email: string;
   password: string;
 }
