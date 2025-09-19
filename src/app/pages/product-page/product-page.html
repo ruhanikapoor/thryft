@@ -1,10 +1,42 @@
-<div class="h-screen w-full flex items-center justify-center bg-[var(--soft-bg)]">
-  <div class="p-5 rounded-lg bg-white">
-    <img [src]="productDetails.imageUrls[0]" [alt]="productDetails.title" class="w-3xl">
+<div class="min-h-screen w-full mt-14 flex flex-col md:flex-row gap-7 md:gap-10 items-start justify-center bg-[var(--soft-bg)] p-6 md:p-12">
+  <div class="w-full md:w-1/2 flex justify-center">
+    <div class="p-5 w-full max-w-xl rounded-2xl bg-white shadow-lg">
+      <img 
+        [src]="productDetails.imageUrls[0]" 
+        [alt]="productDetails.title" 
+        class="w-full h-52 md:h-[400px] object-cover rounded-lg"
+      />
+    </div>
   </div>
 
-  <div class="h-3/4 w-full flex flex-col items-center justify-center">
-    <h1>{{productDetails.title}}</h1>
-    <h2>{{productDetails.price}}</h2>
+  <div class="w-full md:w-1/2 flex flex-col justify-start gap-6">
+    <h1 class="text-3xl md:text-5xl libre-bodoni text-center md:text-left">
+      {{productDetails.title}}
+    </h1>
+    <p class="text-2xl text-[var(--coral)] font-bold">
+      ₹{{productDetails.price}}
+    </p>
+    <hr class="border-gray-300" />
+    <section class="flex flex-col gap-2">
+      <h2 class="text-lg font-serif">Description</h2>
+      <p class="text-sm leading-relaxed">
+        {{productDetails.description}}
+      </p>
+    </section>
+    <section class="flex flex-col gap-1">
+      <h2 class="text-lg font-serif">Product Details</h2>
+      <p class="text-sm"><span class="font-semibold">Created:</span> <span class="text-[var(--coral)] font-semibold">{{productDetails.createdAt}}</span></p>
+      <p class="text-sm"><span class="font-semibold">Updated:</span> <span class="text-[var(--coral)] font-semibold">{{productDetails.updatedAt || '—'}}</span></p>
+      <p class="text-sm"><span class="font-semibold">Category:</span> <span class="text-[var(--coral)] font-semibold">{{productDetails.categoryId}}</span></p>
+      <p class="text-sm"><span class="font-semibold">Sold by:</span> <span class="text-[var(--coral)] font-semibold">{{productDetails.ownerId}}</span></p>
+    </section>
+    <div class="flex flex-col items-center md:items-start gap-3 mt-2">
+      <p class="font-semibold text-[var(--coral)]">
+        Interested in this product? Contact {{productDetails.ownerId}} now!
+      </p>
+      <button class="cursor-pointer rounded-lg px-5 py-2 text-sm text-white shadow-md hover:shadow-lg hover:bg-[#ad8053] bg-[var(--dark-sand)]">
+        Chat with {{productDetails.ownerId}}
+      </button>
+    </div>
   </div>
 </div>
