@@ -14,27 +14,37 @@ export class Login {
   router = inject(Router);
   authService = inject(AuthService);
 
+  errorMessage = '';
+
   loginForm = new FormGroup<{
     email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>({
     email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
-    password: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(6)]})
+    password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(6)] }),
   });
 
-  signUpPage(){
-    this.router.navigateByUrl("sign-up");
+  signUpPage() {
+    this.router.navigateByUrl('sign-up');
   }
 
-  login() {
-    if(this.loginForm.valid){
+  async login() {
+    this.errorMessage = '';
+
+    if (this.loginForm.valid) {
       const user: AuthCredentials = this.loginForm.value as AuthCredentials;
-      this.authService.login(user.email, user.password);
-      const redirectUrl = sessionStorage.getItem('redirectUrl') || '/home';
-      sessionStorage.removeItem('redirectUrl');
-      this.router.navigateByUrl(redirectUrl);
+
+      const success = await this.authService.login(user.email, user.password);
+
+      if (success) {
+        const redirectUrl = sessionStorage.getItem('redirectUrl') || '/home';
+        sessionStorage.removeItem('redirectUrl');
+        this.router.navigateByUrl(redirectUrl);
+      } else {
+        this.errorMessage = 'Invalid email or password. Please try again.';
+      }
     } else {
-      alert("Invalid form. Check credentials again");
+      this.errorMessage = 'Please fill out the form correctly before logging in.';
     }
   }
 }

@@ -11,33 +11,42 @@ import { AuthService } from '../../services/AuthService/auth';
   styleUrl: './register.css'
 })
 export class Register {
-
   router = inject(Router);
   authService = inject(AuthService);
+
+  errorMessage = '';
 
   signUpForm = new FormGroup<{
     name: FormControl<string | null>;
     email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>({
-    name: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(3)]}),
-    email: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.email]}),
-    password: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(6)]})
+    name: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+    email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
+    password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(6)] }),
   });
 
   loginPage() {
-    this.router.navigateByUrl("login");
+    this.router.navigateByUrl('login');
   }
 
-  signUp() {
-    if(this.signUpForm.valid){
+  async signUp() {
+    this.errorMessage = '';
+
+    if (this.signUpForm.valid) {
       const user: SignUpCredentials = this.signUpForm.value as SignUpCredentials;
-      this.authService.login(user.email, user.password);
-      const redirectUrl = sessionStorage.getItem('redirectUrl') || '/home';
-      sessionStorage.removeItem('redirectUrl');
-      this.router.navigateByUrl(redirectUrl);
+
+      const success = await this.authService.signUp(user.email, user.password);
+
+      if (success) {
+        const redirectUrl = sessionStorage.getItem('redirectUrl') || '/home';
+        sessionStorage.removeItem('redirectUrl');
+        this.router.navigateByUrl(redirectUrl);
+      } else {
+        this.errorMessage = 'Sign-up failed. This email may already be registered.';
+      }
     } else {
-      alert("Invalid form. Check credentials again");
+      this.errorMessage = 'Please fill out all fields correctly before signing up.';
     }
   }
 

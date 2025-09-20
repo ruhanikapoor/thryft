@@ -52,6 +52,9 @@
         <p class="text-xs text-red-500">* Password must be at least 6 characters.</p>
         }
       </div>
+      @if(errorMessage){
+        <p>{{errorMessage}}</p>
+      }
       <button
         type="submit"
         class="px-4 py-3 bg-gradient-to-r from-[#ffd166] to-[#ffca8a] hover:from-[#ffcd73] hover:to-[#ffb74d] rounded-full font-semibold shadow-md transition-all hover:shadow-lg active:scale-95 cursor-pointer"

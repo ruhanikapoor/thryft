@@ -1,36 +1,62 @@
 import { Injectable, signal } from '@angular/core';
 import { UserProfile } from '../../../interfaces/user.interface';
+import { firebaseAuth } from '../../../main';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  User,
+} from 'firebase/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private _currentUser = signal<UserProfile | null>(this.loadUser());
-
+  private _currentUser = signal<UserProfile | null>(null);
   readonly currentUser = this._currentUser.asReadonly();
-  login(email: string, password: string): boolean {
-    const user: UserProfile = {
-      id: crypto.randomUUID(),
-      name: email.split('@')[0],
-      email,
-    };
-    localStorage.setItem('user', JSON.stringify(user));
-    this._currentUser.set(user);
-    return true;
+
+  constructor() {
+    onAuthStateChanged(firebaseAuth, (firebaseUser: User | null) => {
+      if (firebaseUser) {
+        const profile: UserProfile = {
+          id: firebaseUser.uid,
+          name: firebaseUser.displayName ?? firebaseUser.email?.split('@')[0] ?? '',
+          email: firebaseUser.email ?? '',
+          avatarUrl: firebaseUser.photoURL ?? undefined,
+        };
+        this._currentUser.set(profile);
+      } else {
+        this._currentUser.set(null);
+      }
+    });
   }
 
-  logout(): void {
-    localStorage.removeItem('user');
-    this._currentUser.set(null);
+  async login(email: string, password: string): Promise<boolean> {
+    try {
+      await signInWithEmailAndPassword(firebaseAuth, email, password);
+      return true;
+    } catch (error) {
+      console.error('Login failed:', error);
+      return false;
+    }
+  }
+
+  async signUp(email: string, password: string): Promise<boolean> {
+    try {
+      await createUserWithEmailAndPassword(firebaseAuth, email, password);
+      return true;
+    } catch (error) {
+      console.error('Signup failed:', error);
+      return false;
+    }
+  }
+
+  async logout(): Promise<void> {
+    await signOut(firebaseAuth);
   }
 
   isLoggedIn(): boolean {
     return this._currentUser() !== null;
   }
-
-  private loadUser(): UserProfile | null {
-    const data = localStorage.getItem('user');
-    return data ? JSON.parse(data) : null;
-  }
-
 }
